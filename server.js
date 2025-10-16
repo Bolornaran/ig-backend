@@ -8,8 +8,9 @@ import userRouter from "./router/user/user.route.js";
 // import { getUserPosts } from "./controller/post/get-user-posts.js";
 import postRouter from "./router/post/post.route.js";
 import dotenv from "dotenv";
+import commentRouter from "./router/comment/comment.route.js";
 
-dotenv.config()
+dotenv.config();
 
 const port = 5555;
 const app = express();
@@ -17,18 +18,15 @@ app.use(cors());
 app.use(express.json());
 
 const connectToMongoDBB = async () => {
-  await mongoose.connect(
-    process.env.MONGO_DB_URI
-  );
+  await mongoose.connect(process.env.MONGO_DB_URI);
 };
 connectToMongoDBB();
 
+app.use("/", userRouter);
+app.use("/post", postRouter);
+app.use("/comment", commentRouter)
 
-app.use('/' , userRouter)
-app.use('/post' , postRouter)
-
-console.log(process.env.MONGO_DB_URI)
-
+console.log(process.env.MONGO_DB_URI);
 
 app.listen(port, () => {
   console.log("Server is running on http://localhost:5555");

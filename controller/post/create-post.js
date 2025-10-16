@@ -1,10 +1,9 @@
-import {postModel} from"../../schema/post.schema.js"
+import { postModel } from "../../schema/post.schema.js";
 
 export const createPost = async (request, response) => {
   const body = request.body;
   const user = request.user;
 
-  const userId = body.userId;
   const images = body.images;
   const caption = body.caption;
 
@@ -14,4 +13,4 @@ export const createPost = async (request, response) => {
     caption: caption,
   });
   response.status(200).json(createdPost);
-}
+};

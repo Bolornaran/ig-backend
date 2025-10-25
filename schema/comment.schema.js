@@ -1,4 +1,4 @@
-import mongoose, { Schema, SchemaType } from "mongoose";
+import mongoose , { Schema } from "mongoose";
 
 const commentSchema = new mongoose.Schema({
   user: { type: Schema.Types.ObjectId, ref: "users", required: true },
@@ -8,4 +8,4 @@ const commentSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now() },
 });
 
-export const commentModel = mongoose.model("comment", commentSchema);
+export const commentModel = mongoose.model("comments", commentSchema);

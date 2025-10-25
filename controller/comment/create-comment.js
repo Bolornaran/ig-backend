@@ -1,4 +1,4 @@
-import { commentModel } from "../../schema/comments.schema.js"
+import { commentModel } from "../../schema/comment.schema.js"
 
 export const createComment = async (request,response) => {
   const userId = request.user._id
@@ -7,7 +7,7 @@ export const createComment = async (request,response) => {
   const createdComment = await commentModel.create({
      user:userId,
      post:postId,
-     comment
+     comment,
   })
 
   response.status(200).json(createdComment)

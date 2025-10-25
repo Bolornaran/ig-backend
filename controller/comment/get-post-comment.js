@@ -1,17 +1,17 @@
-import { commentModel } from "../../schema/comments.schema.js";
+import { commentModel } from "../../schema/comment.schema.js";
 
-export const getPostComments = async (request , response) => {
-    const postId = request.params.postId
-
-    const comments = await commentModel
+export const getPostComments = async (request, response) => {
+  const postId = request.params.postId;
+    console.log(postId)
+  const comments = await commentModel
     .find({
-     post : postId
+      post: postId,
     })
     .populate({
-        path:"post",
-        populate:{ path:"user" , select: "username profilePicture" },
+      path: "post",
+      populate: { path: "user", select: "username profilePicture" },
     })
-    .populate("user","username profilePicture")
+    .populate("user", "username profilePicture");
 
-    response.status(200).json(comments)
+  response.status(200).json(comments);
 };

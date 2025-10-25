@@ -5,10 +5,11 @@ export const createPost = async (request, response) => {
   const user = request.user;
 
   const images = body.images;
+  
   const caption = body.caption;
 
   const createdPost = await postModel.create({
-    user: user._id,
+    user: user._id, 
     images: images,
     caption: caption,
   });
